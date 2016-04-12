@@ -1,0 +1,1 @@
+# jquery.it7InputRules
