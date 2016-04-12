@@ -2,7 +2,7 @@
  *
  * jquery.it7InputRules.js
  * @summary Filtered and transform input characters  jQuery plugin
- * @see https://github.com/it7-solutions/jquery.it7InputRules.js
+ * @see https://github.com/it7-solutions/jquery.it7InputRules
  *
  * @version: 1.0.0
  * @author ANEKHERo.SyS aka Kolodyazhni Andrew
