@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>it7Utils</title>
+    <link rel="stylesheet" href="../node_modules/qunitjs/qunit/qunit.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<div id="app-box"></div>
+<div id="app-out-input"></div>
+<script src="vendor/jquery-1.8.2.min.js"></script>
+<script src="../jquery.it7InputRules.js"></script>
+<script src="../node_modules/qunitjs/qunit/qunit.js"></script>
+<script>
+    (function () {
+		function createState(val){
+			return {
+				added: val,
+				pass: true
+			}
+		}
+        QUnit.test("uppercase transformer test", function (assert) {
+			
+            assert.strictEqual($.fn.it7InputRules.rules.uppercase(createState('a')).added, "A", "Uppercase");
+        });
+        QUnit.test("alphaNumber filter test", function (assert) {
+            assert.strictEqual($.fn.it7InputRules.rules.alphaNumber(createState('a')).pass, true, "Latin letter");
+            assert.strictEqual($.fn.it7InputRules.rules.alphaNumber(createState('1')).pass, true, "Number");
+            assert.strictEqual($.fn.it7InputRules.rules.alphaNumber(createState(String.fromCharCode(1046))).pass, false, "Cyrillic letter");
+            assert.strictEqual($.fn.it7InputRules.rules.alphaNumber(createState(' ')).pass, false, "Space");
+            assert.strictEqual($.fn.it7InputRules.rules.alphaNumber(createState('.')).pass, false, "Dot");
+            assert.strictEqual($.fn.it7InputRules.rules.alphaNumber(createState('-')).pass, false, "Minus");
+            assert.strictEqual($.fn.it7InputRules.rules.alphaNumber(createState('+')).pass, false, "Plus");
+        });
+    })();
+</script>
+</body>
+</html>
