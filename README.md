@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/it7-solutions/jquery.it7InputRules.svg?branch=master)](https://travis-ci.org/it7-solutions/jquery.it7InputRules)
+
 # jquery.it7InputRules
 Plug-in for filtering and transforming text entered in the input field.
 
