@@ -4,7 +4,7 @@
  * @summary Filtered and transform input characters  jQuery plugin
  * @see https://github.com/it7-solutions/jquery.it7InputRules
  *
- * @version: 1.0.0
+ * @version: 1.0.1
  * @author ANEKHERo.SyS aka Kolodyazhni Andrew
  *
  * @licence MIT License http://www.opensource.org/licenses/mit-license
@@ -115,16 +115,17 @@
     }
 
     /**
-     * Exclude Ctrl+* in FF
+     * Exclude in FF Ctrl+*, Backspace, etc
      *
      * @param event
      * @returns {boolean}
      */
     function isPrintableCharacter(event){
-        return !event.ctrlKey && event.which > 0;
+        return !event.ctrlKey && event.which > 31;
     }
 
     function onElementKeyPress(d, event, element){
+        console.log(event.which +' / '+event.charCode + ' / '+ event.keyCode);
         if(isPrintableCharacter(event)){
             var state = createState(event, element);
             setElementValue(applyRules(state, getElementRules(element)));
@@ -165,7 +166,7 @@
      *
      * @returns {boolean}
      */
-    function onElementKeyDown() {
+    function onElementKeyDown(event) {
         if(event.ctrlKey && event.which === 90){
             event.preventDefault();
             return false;
@@ -174,7 +175,7 @@
 
     function setListeners(d){
         if(!d.alreadyListened){
-            d.$root.on('keydown.jquery.it7InputRules', d.selector, function(e){onElementKeyDown()});
+            d.$root.on('keydown.jquery.it7InputRules', d.selector, function(e){onElementKeyDown(e)});
             d.$root.on('keypress.jquery.it7InputRules', d.selector, function(e){onElementKeyPress(d, e, this)});
             d.$root.on('paste.jquery.it7InputRules', d.selector, function (e) {
                 onPasteToElement(d, e, this)
